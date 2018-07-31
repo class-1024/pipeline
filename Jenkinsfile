@@ -21,7 +21,7 @@
         }        
         stage('Sanity check') {            
             steps {       
-               echo 'Does the staging environment look ok?'      
+               input "Does the staging environment look ok?"     
             }        
         }        
         stage('Deploy - Production') {            
