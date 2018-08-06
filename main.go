@@ -1,46 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	http.HandleFunc("/master", get_master)
-	http.HandleFunc("/slave", get_slave)
-
-	fmt.Println(v)
-	http.ListenAndServe(":80", nil)
+	router := gin.Default()
+	router.GET("/index", GetHome)
+	router.Run(":80")
 }
-
-func get_master(w http.ResponseWriter, r *http.Request) {
-
-	resp, err := http.Get("http://my-master-server/master")
-	if err != nil {
-		w.Write([]byte("/my-master-server" + err.Error()))
-		return
-	}
-	defer resp.Body.Close()
-	_, err = ioutil.ReadAll(resp.Body)
-	if err != nil {
-		w.Write([]byte("/my-master-server" + err.Error()))
-		return
-	}
-	w.Write([]byte("l am my-master-server"))
-}
-
-func get_slave(w http.ResponseWriter, r *http.Request) {
-	resp, err := http.Get("http://my-slave-server/slave")
-	if err != nil {
-		w.Write([]byte("my-slave-server" + err.Error()))
-		return
-	}
-	defer resp.Body.Close()
-	_, err = ioutil.ReadAll(resp.Body)
-	if err != nil {
-		w.Write([]byte("my-slave-server" + err.Error()))
-		return
-	}
-	w.Write([]byte("l am my-slave-server"))
+func GetHome(c *gin.Context) {
+	c.JSON(200, gin.H{"code": 0, "message": c.DefaultQuery("name", "welcome to kinot")})
 }
