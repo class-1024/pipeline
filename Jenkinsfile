@@ -12,7 +12,7 @@ node {
         }
         stage('Build') {            
                 echo "3.Build Docker Image Stage"  
-                sh "sudo docker build -t registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag} ."   
+                 sh "docker build -t registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag} ."   
         }
         stage('Push') {             
               echo "4.Push Docker Image Stage"
