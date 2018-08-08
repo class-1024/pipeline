@@ -12,7 +12,8 @@ pipeline {
         }
         stage('Test') {
            steps {                
-               echo "2.Test Stage"
+                echo "2.Test Stage"
+                sh " helm install --name my-release stable/wordpress"
             }        
         }
         stage('Build') {
