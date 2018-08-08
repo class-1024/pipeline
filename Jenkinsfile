@@ -13,13 +13,13 @@ pipeline {
         stage('Test') {
            steps {                
                 echo "2.Test Stage"
-                sh " helm install --name my-release stable/wordpress"
+                sh "sudo helm install --name my-release stable/wordpress"
             }        
         }
         stage('Build') {
            steps {                
                 echo "3.Build Docker Image Stage"  
-                sh "docker build -t registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag} ."
+                sh "sudo docker build -t registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag} ."
             }        
         }
         stage('Push') {
