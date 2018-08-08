@@ -2,6 +2,7 @@ pipeline {
    agent any
    stages {
        stage('Clone') {
+          checkout scm
           steps {                
                 echo "1.Clone Stage" 
                 script {
@@ -13,7 +14,6 @@ pipeline {
         stage('Test') {
            steps {                
                 echo "2.Test Stage"
-                sh "sudo helm install --name my-release stable/wordpress"
             }        
         }
         stage('Build') {
