@@ -24,7 +24,7 @@
                input "Does the staging environment look ok?"     
             }        
         }        
-        stage('Deploy - Production') {            
+        stage('Deploy') {            
             steps {    
                 echo './deploy production'                 
             }        
