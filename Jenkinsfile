@@ -1,50 +1,40 @@
 
  pipeline {
-   agent any
-    stages {
-        stage('Build') {            
-            steps {                
-                echo 'Building'            
-            }        
-        }        
-        stage('Test') {            
-            steps {                
-                echo 'Testing'            
-            }        
-        }
-        stage('Deploy - Staging') {            
-            steps {                 
-                 echo './deploy staging ./run-smoke-tests'      
-            }        
-        }        
-        stage('Sanity check') {            
-            steps {       
-               input "Does the staging environment look ok?"     
-            }        
-        }        
-        stage('Deploy') {            
-            steps {    
-                echo './deploy production'                 
-            }        
-        }    
+    stage('Clone') {
+      echo "1.Clone Stage"
+    }
+    stage('Test') {
+      echo "2.Test Stage"
+    }
+    stage('Build') {
+      echo "3.Build Docker Image Stage"
+    }
+    stage('Push') {
+      echo "4.Push Docker Image Stage"
+    }
+    stage('YAML') {
+      echo "5. Change YAML File Stage"
+    }
+    stage('Deploy') {
+      echo "6. Deploy Stage"
     }
 
     post {        
         always {            
-            echo 'One way or another, I have finished'            
+            echo 'post always'            
             deleteDir() /* clean up our workspace */        
         }        
         success {            
-            echo 'I succeeeded!'        
+            echo 'post success '        
         }        
         unstable {            
-            echo 'I am unstable :/'        
+            echo 'post unstable'        
         }        
         failure {            
-            echo 'I failed :('        
+            echo 'post failure'         
         }        
         changed {            
-            echo 'Things were different before...'        
+            echo 'post changed'        
         }    
     }
 }
