@@ -12,13 +12,13 @@ node {
         }
         stage('Build') {            
                 echo "3.Build Docker Image Stage"  
-                 sh "docker build -t registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag} ."   
+                 sh "sudo docker build -t registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag} ."   
         }
         stage('Push') {             
               echo "4.Push Docker Image Stage"
-              sh "docker login -u=广州科玛技术有限公司 -p kinot-2018 registry.cn-shenzhen.aliyuncs.com"
-              sh "docker push registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag}"    
-        }
+              sh "sudo docker login -u=广州科玛技术有限公司 -p kinot-2018 registry.cn-shenzhen.aliyuncs.com"
+              sh "sudo docker push registry.cn-shenzhen.aliyuncs.com/kinot-k8s/kinot-web-api:${build_tag}"    
+        } 
         stage('YAML') {             
                echo "5. Change YAML File Stage"    
         }
