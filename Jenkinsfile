@@ -9,7 +9,7 @@ node {
         }
         stage('Test') {
                 echo "2.Test Stage"   
-                 sh "sudo  go build  ."   
+                 sh "go build  . "   
         }
         stage('Build') {            
                 echo "3.Build Docker Image Stage"  
