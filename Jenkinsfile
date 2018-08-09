@@ -8,8 +8,7 @@ node {
                }      
         }
         stage('Test') {
-                echo "2.Test Stage"   
-                 sh "go build  . "   
+                echo "2.Test Stage"    
         }
         stage('Build') {            
                 echo "3.Build Docker Image Stage"  
